@@ -1,0 +1,97 @@
+body{
+    background-color: #dcf3fe;
+}
+nav,footer{
+    background-color:#91caff;
+}
+main{
+    background-color:rgb(56, 205, 255);
+
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+
+
+
+.BW-img-size{
+    object-fit: contain;
+
+
+
+    &.BW-size-fill{
+        width: 100%;
+    }
+}
+.box-blue{
+    background-color: lightskyblue;
+
+    border: 2px solid black;
+    border-radius: 10px;
+
+}
+
+
+/* Over Engineered */
+.OE-bg{
+
+
+
+
+
+
+
+    &.bg-color-dodgerblue{
+        background-color: dodgerblue;
+    }
+    &.bg-color-darkerDodgerblue{
+        background-color: rgb(0, 97, 194);
+    }
+    &.bg-color-white-blurryTransparent{
+        background-color: rgb(255, 255, 255, 0.5);
+    }
+}
+.OE-border{
+    &.border-rounded{
+        border-radius: 10px;
+    }
+    &.border-black{
+        border: 2px solid black;
+    }
+    
+}
+
+
+.OE-card{
+    border: 2px solid black;
+    border-radius: 20px;
+    padding: 10px;
+
+    overflow: hidden;
+
+    & .card-item-design-borderedGray{
+        border: 2px solid black;
+        border-radius: 20px;
+
+        background-color: rgb(228, 228, 228);
+
+        padding: 10px;
+    }
+
+    &.card-design-borderedBlurWhite{
+        border: 2px solid black;
+        border-radius: 20px;
+
+        overflow: hidden;
+        padding: 40px;
+
+
+        background-color: rgb(255, 255, 255, 0.4);
+        backdrop-filter: blur(10px);
+    }
+
+
+}
