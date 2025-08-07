@@ -29,6 +29,20 @@ async function getTemplate(tempFileName) {
         );  
 }
 
+// repository-templates
+
+
+function tagTemplate(html, tempId, repoId) {
+    const newTemplate = document.createElement("template");
+    newTemplate.content = html
+    newTemplate.id = tempId
+    const tempRepo = document.getElementById(repoId)
+    tempRepo.appendChild(newTemplate)
+}
+
+
+
+
 function insertTemplate(template, designation){
     const designationElement = document.getElementById(designation)
     const html = template;
