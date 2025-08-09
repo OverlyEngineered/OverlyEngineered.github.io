@@ -1,23 +1,26 @@
 class OE_TemplatingEngine {
-    constructor(directoryPath, tempRepoAttr) {
-        this.directoryPath = directoryPath
-        this.tempRepoAttr = tempRepoAttr
-        this.templateDict = {
-            navbar: {
-                fileName: "navbar.html",
-                loaded: false
-            },
-        }
+    constructor(templateDirectoryPath, templateRepositoryId, AllTemplateData) {
+        this.templateDirectoryPath = templateDirectoryPath
+        this.templateRepository = document.getElementById(templateRepositoryId)
+        this.AllTemplateData = AllTemplateData
+    }
+    getTemplate() {
+
     }
 
-    loadTemplate(tempFileKey) {
-        const pathToTemp = this.directoryPath
-        const newTempId = tempFileKey
-        const tempFileName = this.templateDict[tempFileKey].fileName
 
-        const url = pathToTemp + tempFileName
+    loadTemplate(newTemplateKey) {
+        const newTemplateData = AllTemplateData[newTemplateKey];
+        const newTemplateDirectoryPath = this.templateDirectoryPath;
+        const newTemplateFileName = newTemplateData.fileName;
+        const newTemplateFilePath = newTemplateDirectoryPath + newTemplateFileName;
+        const newTemplateName = newTemplateKey;
 
-        fetch(url)
+
+        
+        const newTemplateRepository = this.templateRepository;
+        
+        fetch(newTemplateFilePath)
             .then(
                 response => {
                     if (!response.ok) {
@@ -28,21 +31,16 @@ class OE_TemplatingEngine {
             )
             .then(
                 data => {
-                    const tempHTML = data.toString()
-
+                    const newtemplateHTML = data.toString();
 
                     //ANCHOR - Create Template
-                    const newTemplate = document.createElement("template")
-                    newTemplate.id = newTempId
-                    newTemplate.innerHTML = tempHTML
+                    const newTemplate = document.createElement("template");
+                    newTemplate.setAttribute("data-template-name", newTemplateName);
+                    newTemplate.innerHTML = newtemplateHTML;
 
-                    //ANCHOR - Insert (append) Template To Repository
-                    const tempRepo = document.querySelector(this.tempRepoAttr)
-                    tempRepo.appendChild(newTemplate)
-
-                    this.templateDict[tempFileKey].loaded = true
-                    console.log(tempFileKey + "loaded")
-
+                    //ANCHOR - Load (append) Template To Repository
+                    newTemplateRepository.appendChild(newTemplate);
+                    this.AllTemplateData[newTemplateKey].loaded = true;
                     return data; // Processes the resolved JSON data
                 }
             )
@@ -85,3 +83,23 @@ const designationElement = document.querySelector('[data-insert-template="navbar
 console.log("designationElement", designationElement)
 
 templatingEngine.insertTemplate("navbar", designationElement)
+
+
+
+
+
+myDirectoryPath = "Templates/"
+MyTempRepoId = "#template-repository"
+
+myTemplates = {
+    navbar: {
+        fileName: "navbar.html",
+        loaded: false
+    },
+    footer: {
+        fileName: "footer.html",
+        loaded: false
+    }
+
+}
+templatingEngine = new OE_TemplatingEngine(myDirectoryPath, MyTempRepoId, myTemplates)
